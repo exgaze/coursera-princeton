@@ -4,23 +4,23 @@ public class ThueMorse
     {
         int length = Integer.parseInt(args[0]);
         boolean[] a;
-        a = new boolean[length];
+        a = new boolean[length*length];
         a[0] = false;
-        a[1] = true;
-        for ( int i = 2; i <= length; i *= 2 )
+        for ( int i = 0; i < a.length/2; i++ )
         {
-            if ( a[i/2 - 1] == false ) a[i/2 + 1] = true;
-            else if ( a[i/2 - 1] == true ) a[i/2 + 1] = false;
+            if ( a[i] == false ) a[2 * i] = false;
+            else a[2 * i] = true;
+
+            if ( a[i] == false ) a[2 * i + 1] = true;
+            else a[2 * i + 1] = false;
+            
         }
-        for ( int i = 0; i < length; i++ )
+        for ( int i = 0; i < a.length; i++ )
         {
-            for ( int j = 0; j < length; j++ )
-            {
-                if ( a[j] == true && j == length - 1 ) System.out.println("-");
-                else if ( a[j] == false && j == length - 1 ) System.out.println("+");
-                else if ( a[j] == true ) System.out.print("-  ");
-                else if ( a[j] == false ) System.out.print("+  ");
-            }
+            if ( (i + 1) % length == 0  && a[i] == true ) System.out.println("-");
+            else if ( (i + 1) % length == 0 && a[i] == false ) System.out.println("+");
+            else if ( a[i] == true ) System.out.print("-  ");
+            else if ( a[i] == false ) System.out.print("+  ");
         }
     }
 }
